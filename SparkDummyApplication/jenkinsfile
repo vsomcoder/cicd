@@ -1,0 +1,20 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Compile') { 
+            steps {
+                sh 'cd SparkWordCount && mvn clean compile'
+            }
+        }
+        stage('Unit Test') { 
+            steps {
+                sh 'cd SparkWordCount && mvn clean test'
+            }
+        }
+        stage('Package') { 
+            steps {
+                'cd SparkWordCount && mvn clean package'
+            }
+        }
+    }
+}
