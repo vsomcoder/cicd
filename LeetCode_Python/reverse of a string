@@ -1,0 +1,36 @@
+approach: 
+    1) Initialize start and end indexes as start = 0, end = n-1 
+    2) In a loop, swap arr[start] with arr[end] and change start and end as follows : 
+    start = start +1, end = end – 1
+
+Explanation:
+    https://www.geeksforgeeks.org/write-a-program-to-reverse-an-array-or-string/
+
+Solution:
+    leetcode-344 
+
+code:
+
+class Solution:
+  def reverseString(self, s: List[str]) -> None:
+      start = 0 
+      end = len(s) - 1 # end = 5 
+      """
+          start = "h" | end = "o
+          swap start = "o" | end = "h" & start ++ | end -- 
+          start = "e" | end = "l"
+          swap start = "l" | end = "e"
+          ..
+          ..
+      """
+      while(start < end):
+              ## swap the start with end 
+              s[start], s[end] = s[end], s[start]
+              start += 1 
+              end -= 1
+
+# Create an instance of the Solution class
+slt = Solution()
+li = ["v","i","s","h","a","l"]
+li 
+slt.reverseString(li)
