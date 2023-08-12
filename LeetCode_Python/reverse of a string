@@ -34,3 +34,19 @@ slt = Solution()
 li = ["v","i","s","h","a","l"]
 li 
 slt.reverseString(li)
+
+
+raw code:
+---------
+class Solution:
+  def reverseString(self, s: List[str]) -> None:
+      start = 0 
+      end = len(s) - 1 
+      while(start < end):
+              s[start], s[end] = s[end], s[start]
+              start += 1 
+              end -= 1
+slt = Solution()
+li = ["v","i","s","h","a","l"]
+li 
+slt.reverseString(li)
