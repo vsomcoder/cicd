@@ -66,3 +66,34 @@ In summary:
 Time Complexity: O(n) (linear time complexity)
 Space Complexity: O(1) (constant space complexity)
 These complexity analyses indicate that the algorithm is efficient and scales well with larger input sizes without using significant additional memory.
+
+
+raw code:
+---------
+from typing import List
+
+class Main:
+    @staticmethod
+    def shift_all(arr: List[int], left: int, right: int) -> None:
+        while left <= right:
+            if arr[left] < 0 and arr[right] < 0:
+                left += 1 
+            elif arr[left] > 0 and arr[right] > 0:
+                right -= 1
+            elif arr[left] > 0 and arr[right] < 0:
+                arr[left], arr[right] = arr[right], arr[left]
+                left += 1 
+                right -= 1
+            else:
+                left += 1
+                right -= 1
+
+# Function to print the array
+def display(arr):
+    for i in range(len(arr)):
+        print(arr[i], end = " ")
+    
+li = [-12, 11, -13, -5, 6, -7, 5, -3, 11]
+m = Main()
+m.shift_all(li, 0, len(li) - 1)
+display(li)
