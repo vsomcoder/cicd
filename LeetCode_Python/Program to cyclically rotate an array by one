@@ -1,0 +1,92 @@
+Consider an array: arr[] = {1, 2, 3, 4, 5}
+
+Initialize last element in variable ‘last_el’ that is 5
+Then, iterate from n-1 to 1 and assign arr[i] = arr[i-1]
+arr[4] = arr[3]
+arr[ ] = {1, 2, 3, 4, 4}
+arr[3] = arr[2]
+arr[ ] = {1, 2, 3, 3, 4}
+arr[2] = arr[1]
+arr[ ] = {1, 2, 2, 3, 4}
+arr[1] = arr[0]
+arr[ ] = {1, 1, 2, 3, 4}
+Assign arr[0] = last_el
+arr[0] = 5
+arr[ ] = {5, 1, 2, 3, 4}
+Thus the required array will be {5, 1, 2, 3, 4}
+
+
+Follow the steps to solve the problem:
+
+Store the last element in any temp variable
+Shift every element one position ahead
+Assign first value = last value (stored in temp variable).
+
+range(start, stop, end)
+eg
+range(5, 0, -1)
+5
+4
+3
+2
+1
+
+range(5, 0, 1)
+wont execute as 5 is greater then 0, and we are taking a step of 1.
+
+code:
+----
+from typing import List
+class Main:
+    # instance method
+    def rotate_array(self, arr: List[int], n: int) -> None:
+        last_el = arr[n - 1]
+        # start = n-1, stop = 0, step = -1(1 value less after each loop)
+        for i in range(n - 1, 0, -1):
+             #arr[4] = arr[3] | i = n-1 and i > 0 and i -- 
+             #arr[3] = arr[2]. | i = n-2 and i > 0 and i -- 
+             #arr[2] = arr[1]. | i = n-3 and i > 0 and i -- 
+             #arr[1] = arr[0]. | i = n-4 and i > 0 and i -- 
+             #arr[0] = arr[-1]. | i = n-5 and i < 0 and i -- break 
+            arr[i] = arr[i - 1]  
+            
+        #arr[0] = arr[4]
+        arr[0] = last_el
+
+    def display(self, arr: List[int], n: int) -> None:
+    # range(len(arr)) = 0, 5, 1 i.e start = 0, stop = 5, step = 1 
+    # i = 0 , i = 1, i = 2, i = 3, i = 4 
+        for i in range(0, n):
+            print (arr[i], end = " ")
+        print() # Add a newline after printing the array elements
+    
+    
+# instance of the class 
+m = Main()
+arr = [1, 2, 3, 4, 5]
+print("original array:")
+m.display(arr, len(arr)) # Display the original array
+
+m.rotate_array(arr, len(arr)) # Rotate the array
+
+print("rotated array:")
+m.display(arr, len(arr)) # Display the rotated array
+
+
+output:
+--------
+original array:
+1 2 3 4 5 
+rotated array:
+5 1 2 3 4 
+
+
+Time Complexity:
+
+The rotate_array method contains a loop that iterates through the elements of the array and performs constant-time operations inside the loop. This loop runs in O(n) time, where n is the length of the array.
+The display method also contains a loop that iterates through the elements of the array and performs constant-time operations inside the loop. This loop also runs in O(n) time.
+Overall, the time complexity of the entire code is O(n), where n is the length of the array.
+Space Complexity:
+
+The rotate_array method and the display method both use a constant amount of extra space for variables (last_el, i, etc.), regardless of the size of the input array. Hence, the space complexity is O(1), constant space.
+In summary, the code has a time complexity of O(n) and a space complexity of O(1).
