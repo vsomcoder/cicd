@@ -1,0 +1,68 @@
+cenarios:
+    left - and right -
+        left += 1 
+    left + and right + 
+        right -= 1 
+    left + and right -
+        swap 
+        left += 1 and right -= 1 
+    left - and right + 
+        left += 1 and right -= 1
+
+
+code:
+----
+from typing import List
+
+class Main:
+    # takes list of integer, left of integer, and right of integer value, return type is NULL
+    @staticmethod
+    def shift_all(arr: List[int], left: int, right: int) -> None:
+        
+        # left pointer should be less then or equal to right pointer
+        while left <= right:
+            #  left - and right - then 'left += 1'
+            if arr[left] < 0 and arr[right] < 0:
+                left += 1 
+            # left + and right + then 'right -= 1'
+            elif arr[left] > 0 and arr[right] > 0:
+                right -= 1
+            # if left + and right - then 'left += 1 and right -= 1' and swap
+            elif arr[left] > 0 and arr[right] < 0:
+                arr[left], arr[right] = arr[right], arr[left]
+                left += 1 
+                right -= 1
+            # left - and right + then 'left += 1 and right -= 1'
+            else:
+                left += 1
+                right -= 1
+
+# Function to print the array
+def display(arr):
+    for i in range(len(arr)):
+        print(arr[i], end = " ")
+    
+li = [-12, 11, -13, -5, 6, -7, 5, -3, 11]
+m = Main()
+m.shift_all(li, 0, len(li) - 1)
+display(li)
+
+Time Complexity:
+The time complexity of an algorithm indicates how the execution time of the algorithm grows with the size of the input. Let's analyze the code step by step:
+
+The while loop runs until left is less than or equal to right, which means it iterates through the elements in the array.
+Inside the loop, most of the operations are comparisons and swaps, which are constant time operations. These operations are executed a constant number of times in each iteration.
+Therefore, the time complexity of this algorithm is O(n), where n is the length of the input array. This is because the number of iterations in the loop is directly proportional to the size of the input array.
+
+Space Complexity:
+The space complexity of an algorithm indicates how much additional memory is used by the algorithm as the input size increases.
+
+In the provided code, the space complexity is primarily determined by the input array and the constant number of variables used for the loop control and element comparisons. These variables do not depend on the input size, so they are considered constant space.
+
+Therefore, the space complexity of this algorithm is O(1), which means it uses a constant amount of additional memory regardless of the input size. The memory usage remains roughly the same, regardless of how large the input array is.
+
+In summary:
+
+Time Complexity: O(n) (linear time complexity)
+Space Complexity: O(1) (constant space complexity)
+These complexity analyses indicate that the algorithm is efficient and scales well with larger input sizes without using significant additional memory.
